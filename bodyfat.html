@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>احسب نسبة الدهون - صحتي</title>
+  <link href="style.css" rel="stylesheet">
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav>
+  <div class="nav-content">
+    <h1>💪 صحتي</h1>
+    <ul>
+      <li><a href="index.html">الرئيسية</a></li>
+      <li><a href="bmi.html">BMI</a></li>
+      <li><a href="tdee.html">السعرات</a></li>
+      <li><a href="bodyfat.html">الدهون</a></li>
+      <li><a href="contact.html">تواصل معنا</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- إعلان -->
+<div class="ad-placeholder">📢 إعلان أعلى الصفحة</div>
+
+<!-- Body Fat Tool -->
+<div class="bmi-container">
+  <h2>احسب نسبة الدهون في جسمك</h2>
+
+  <label for="waist">📏 محيط الخصر (سم)</label>
+  <input type="number" id="waist" placeholder="مثلاً: 85">
+
+  <label for="neck">📏 محيط الرقبة (سم)</label>
+  <input type="number" id="neck" placeholder="مثلاً: 38">
+
+  <label for="height">📏 الطول (سم)</label>
+  <input type="number" id="height" placeholder="مثلاً: 170">
+
+  <label for="gender">⚧️ الجنس</label>
+  <select id="gender">
+    <option value="male">ذكر</option>
+    <option value="female">أنثى</option>
+  </select>
+
+  <div id="hipsContainer" style="display:none;">
+    <label for="hips">📏 محيط الورك (سم)</label>
+    <input type="number" id="hips" placeholder="مثلاً: 95">
+  </div>
+
+  <button onclick="calculateBodyFat()">احسب دلوقتي</button>
+
+  <div id="result" class="result"></div>
+
+  <audio id="successSound" src="https://cdn.pixabay.com/download/audio/2023/03/07/audio_81f69e11d6.mp3?filename=interface-124464.mp3" preload="auto"></audio>
+</div>
+
+<!-- إعلان -->
+<div class="ad-placeholder">📢 إعلان أسفل الأداة</div>
+
+<!-- FOOTER -->
+<footer>
+  <p>
+    &copy; 2025 جميع الحقوق محفوظة - موقع <strong>صحتي</strong> |
+    <a href="privacy.html">سياسة الخصوصية</a> |
+    <a href="about.html">من نحن</a>
+  </p>
+</footer>
+
+<script>
+  const genderSelect = document.getElementById('gender');
+  const hipsContainer = document.getElementById('hipsContainer');
+
+  genderSelect.addEventListener('change', () => {
+    hipsContainer.style.display = genderSelect.value === 'female' ? 'block' : 'none';
+  });
+
+  function calculateBodyFat() {
+    const gender = document.getElementById('gender').value;
+    const waist = parseFloat(document.getElementById('waist').value);
+    const neck = parseFloat(document.getElementById('neck').value);
+    const height = parseFloat(document.getElementById('height').value);
+    const hips = parseFloat(document.getElementById('hips').value);
+    const result = document.getElementById('result');
+    const sound = document.getElementById('successSound');
+
+    if (
+      isNaN(waist) || isNaN(neck) || isNaN(height) ||
+      (gender === 'female' && isNaN(hips))
+    ) {
+      result.textContent = "من فضلك املأ جميع البيانات المطلوبة.";
+      result.classList.add('show');
+      return;
+    }
+
+    let bodyFat;
+
+    if (gender === 'male') {
+      bodyFat = 495 / (1.0324 - 0.19077 * Math.log10(waist - neck) + 0.15456 * Math.log10(height)) - 450;
+    } else {
+      bodyFat = 495 / (1.29579 - 0.35004 * Math.log10(waist + hips - neck) + 0.22100 * Math.log10(height)) - 450;
+    }
+
+    bodyFat = bodyFat.toFixed(2);
+
+    result.textContent = `نسبة الدهون في جسمك تقريباً: ${bodyFat}%`;
+    result.classList.add('show');
+    sound.play();
+  }
+</script>
+
+<script>
+  window.addEventListener("scroll", function () {
+    const navbar = document.querySelector("nav");
+    navbar.classList.toggle("scrolled", window.scrollY > 50);
+  });
+</script>
+
+</body>
+</html>

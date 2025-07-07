@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>احسب مؤشر كتلة الجسم - صحتي</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ===== Navbar ===== -->
+  <nav>
+    <div class="nav-content">
+      <h1>💪 صحتي</h1>
+      <ul>
+        <li><a href="index.html">الرئيسية</a></li>
+        <li><a href="bmi.html">BMI</a></li>
+        <li><a href="tdee.html">السعرات</a></li>
+        <li><a href="bodyfat.html">الدهون</a></li>
+        <li><a href="contact.html">تواصل معنا</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ===== Ad Top ===== -->
+  <div class="ad-placeholder">📢 إعلان أعلى الصفحة</div>
+
+  <!-- ===== BMI Tool ===== -->
+  <div class="bmi-container">
+    <h2>احسب مؤشر كتلة جسمك (BMI)</h2>
+
+    <label for="weight">🚹 الوزن (كجم)</label>
+    <input type="number" id="weight" placeholder="مثلاً: 75">
+
+    <label for="height">📏 الطول (سم)</label>
+    <input type="number" id="height" placeholder="مثلاً: 170">
+
+    <button onclick="calculateBMI()">احسب دلوقتي</button>
+
+    <div id="result" class="result"></div>
+
+    <audio id="successSound" src="https://cdn.pixabay.com/download/audio/2023/03/07/audio_81f69e11d6.mp3?filename=interface-124464.mp3" preload="auto"></audio>
+  </div>
+
+  <!-- ===== Ad Bottom ===== -->
+  <div class="ad-placeholder">📢 إعلان أسفل الأداة</div>
+
+  <!-- ===== Footer ===== -->
+  <footer>
+    <p>
+      &copy; 2025 جميع الحقوق محفوظة - موقع <strong>صحتي</strong> |
+      <a href="privacy.html">سياسة الخصوصية</a> |
+      <a href="about.html">من نحن</a>
+    </p>
+  </footer>
+
+  <!-- ===== Scripts ===== -->
+  <script>
+    function calculateBMI() {
+      const weight = parseFloat(document.getElementById('weight').value);
+      const height = parseFloat(document.getElementById('height').value) / 100;
+      const result = document.getElementById('result');
+      const sound = document.getElementById('successSound');
+
+      if (isNaN(weight) || isNaN(height) || height <= 0) {
+        result.textContent = "من فضلك اكتب وزن وطول صحيحين.";
+        result.classList.add('show');
+        return;
+      }
+
+      const bmi = (weight / (height * height)).toFixed(2);
+      let category;
+
+      if (bmi < 18.5) {
+        category = 'نحافة';
+      } else if (bmi < 24.9) {
+        category = 'وزنك مثالي';
+      } else if (bmi < 29.9) {
+        category = 'زيادة وزن';
+      } else {
+        category = 'سمنة';
+      }
+
+      result.textContent = `مؤشر كتلة جسمك: ${bmi} - (${category})`;
+      result.classList.add('show');
+      sound.play();
+    }
+
+    // Scroll effect for navbar
+    window.addEventListener("scroll", function () {
+      const navbar = document.querySelector("nav");
+      navbar.classList.toggle("scrolled", window.scrollY > 50);
+    });
+  </script>
+
+</body>
+</html>

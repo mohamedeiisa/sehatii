@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>صحتي - الصفحة الرئيسية</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav>
+  <div class="nav-content">
+    <h1>💪 صحتي</h1>
+    <ul>
+      <li><a href="index.html">الرئيسية</a></li>
+      <li><a href="bmi.html">BMI</a></li>
+      <li><a href="tdee.html">السعرات</a></li>
+      <li><a href="bodyfat.html">الدهون</a></li>
+      <li><a href="contact.html">تواصل معنا</a></li>
+    </ul>
+  </div>
+</nav>
+
+
+  <!-- HERO -->
+  <section class="hero">
+    <h2>احسب صحتك بكل سهولة</h2>
+    <p>استخدم أدواتنا البسيطة لحساب وزنك المثالي، السعرات اليومية، ونسبة الدهون في جسمك — وكل ده مجاني وبدون تسجيل!</p>
+  </section>
+
+  <!-- ADS -->
+  <div class="ad-placeholder">📢 إعلان بانر رئيسي</div>
+
+  <!-- TOOLS -->
+  <section class="tools">
+    <div class="tool-card">
+      <h3>🔹 مؤشر كتلة الجسم</h3>
+      <p>احسب BMI واعرف هل وزنك مثالي ولا محتاج تعديل؟</p>
+      <a href="bmi.html">احسب دلوقتي</a>
+    </div>
+
+    <div class="tool-card">
+      <h3>🔥 السعرات اليومية</h3>
+      <p>اعرف جسمك محتاج كام سعر حراري في اليوم للحفاظ على وزنك أو خسارته.</p>
+      <a href="tdee.html">احسب الآن</a>
+    </div>
+
+    <div class="tool-card">
+      <h3>🥑 نسبة الدهون</h3>
+      <p>احسب تقريبًا نسبة الدهون بجسمك من خلال محيطات بسيطة.</p>
+      <a href="bodyfat.html">ابدأ الحساب</a>
+    </div>
+  </section>
+
+  <!-- MORE ADS -->
+  <div class="ad-placeholder">📢 إعلان في منتصف الصفحة</div>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>
+      &copy; 2025 جميع الحقوق محفوظة - موقع <strong>صحتي</strong> |
+      <a href="privacy.html">سياسة الخصوصية</a> |
+      <a href="about.html">من نحن</a>
+    </p>
+  </footer>
+<script>
+  window.addEventListener("scroll", function () {
+    const navbar = document.querySelector("nav");
+    navbar.classList.toggle("scrolled", window.scrollY > 50);
+  });
+</script>
+
+</body>
+</html>
